@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ReadyWorks</class>
+ <widget class="QWidget" name="ReadyWorks">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>813</width>
+    <height>308</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(242, 255, 240);</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="0" colspan="3">
+      <widget class="QTableWidget" name="tableWidget">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <column>
+        <property name="text">
+         <string>Наименование работы</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>ФИО ответственного</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Дата начала</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Срок</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Сложность</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Статус</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Дата окончания</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+     <item row="0" column="0" colspan="3">
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+         <italic>true</italic>
+        </font>
+       </property>
+       <property name="text">
+        <string>Выполненные работы</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QPushButton" name="confirmButton">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(210, 255, 215);</string>
+       </property>
+       <property name="text">
+        <string>Подтвердить</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="backButton">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(210, 255, 215);</string>
+       </property>
+       <property name="text">
+        <string>Назад</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
