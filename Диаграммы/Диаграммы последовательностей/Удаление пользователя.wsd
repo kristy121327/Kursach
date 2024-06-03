@@ -1,0 +1,23 @@
+@startuml
+skinparam Shadowing true
+actor "Администратор" as admin
+boundary "  Главное меню\nадминистратора" as mainMenuAd
+boundary "Окно удаления\n пользователей" as removeUserWindow 
+boundary "Окно ошибки" as errorWindow #Red
+
+entity "База данных" as fs
+
+admin -> mainMenuAd : Нажал удалить\n пользователя
+mainMenuAd -> removeUserWindow **: Отобразить
+removeUserWindow -> fs : Проверка корректности данных
+fs --> removeUserWindow
+
+alt Данные корректны
+    removeUserWindow -> fs : Удаление пользователя
+    fs --> removeUserWindow : Обновление базы данных
+else Данные не корректны
+    removeUserWindow -> errorWindow ** : Создать
+    errorWindow --> admin
+end
+
+@enduml

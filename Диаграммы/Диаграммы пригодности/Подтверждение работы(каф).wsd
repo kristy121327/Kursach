@@ -1,0 +1,25 @@
+@startuml
+skinparam Shadowing true
+actor "Представитель кафедры" as departmentRep
+boundary "Личный кабинет" as personalCabinet
+boundary "Окно работы" as workWindow
+
+control "Загрузка данных о работе" as loadWorkData
+control "Подтверждение работы" as confirmWork
+control "Отклонение работы" as rejectWork
+control "Сохранение данных" as saveData
+entity "База данных" as database
+
+departmentRep --> personalCabinet
+personalCabinet -r-> loadWorkData 
+loadWorkData <--> database 
+loadWorkData -r-> workWindow 
+
+workWindow -r-> confirmWork : Нажата кнопка\n Подтвердить
+workWindow --> rejectWork : Нажата кнопка\n Отклонить
+
+confirmWork -l-> saveData : Сохранить дату\nподтверждения
+rejectWork --> saveData : Сохранить комментарий
+saveData --> database : Обновление данных
+
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+skinparam Shadowing true
+actor "Сотрудник" as employee
+boundary "Личный кабинет" as personalCabinet
+boundary "Профиль" as profile
+entity "База данных" as database
+
+employee -> personalCabinet : Нажата кнопка\n"Открыть профиль"
+personalCabinet -> profile **: Отобразить профиль
+profile --> database : Запрос данных профиля
+database --> profile : Данные профиля
+profile --> employee
+
+@enduml
