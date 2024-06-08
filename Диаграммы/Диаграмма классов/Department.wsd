@@ -1,0 +1,109 @@
+@startuml
+
+hide empty methods
+hide empty members
+
+ 
+class DatabaseManager
+{
+ bool openDatabase()
+ void closeDatabase()
+ QSqlDatabase getDatabase()
+ bool createUsersTable()
+ bool insertInitialData()
+ QList<QString> getEmployeeNamesByRoles()
+ int getUserIdFromFullName()
+ int getUserIdFromLogin()
+ mutable QSqlDatabase db
+}
+
+class WorksDataManager
+{
+ bool openDatabase(const QString &path)
+ void closeDatabase()
+ bool createTable()
+ bool insertSampleData()
+ QList<QString> getAllWorkNames()
+ QList<QVariantList> getWorksForUser()
+ QList<QString> getUserWorkNames()
+ bool updateProjectStatus()
+ bool updateProject()
+ QSqlDatabase m_db
+ DatabaseManager db
+
+}
+
+
+class AddWork
+{
+  void on_backButton_clicked()
+  void on_addButton_clicked()
+  QSqlDatabase db
+  void openDatabase()
+  DatabaseManager databasemanager
+}
+
+class ConfirmThisWork
+{
+  void on_backButton_clicked()
+  void on_rejectButton_clicked()
+  void on_confirmButton_clicked()
+  QSqlDatabase dbWorks
+  QStringListModel *model
+  WorksDataManager worksDataManager
+  void openDatabase()
+  void loadWorkNames()
+}
+
+class DepartmentAccount
+{
+  void on_exitButton_clicked()
+  void on_NewWorksButton_clicked()
+  void on_ConfirmWorksButton_2_clicked()
+}
+
+class ListWorks
+{
+  
+  void on_backButton_clicked()
+  void on_addButton_clicked()
+  QSqlDatabase dbWorks
+  QSqlDatabase dbUsers
+  void openDatabases()
+  void closeDatabases()
+  void loadData()
+}
+
+class ReadyWorks
+{
+  void on_backButton_clicked()
+  void on_confirmButton_clicked()
+  void loadData()
+  void updateWorkRow(int status)
+  QSqlDatabase dbWorks
+  QSqlDatabase dbUsers
+  void openDatabases()
+  void closeDatabases()
+  int getSelectedWorkId()
+}
+
+
+DepartmentAccount -l-> ListWorks
+DepartmentAccount -r-> ReadyWorks
+
+ReadyWorks --> ConfirmThisWork
+
+ListWorks --> AddWork
+
+WorksDataManager --> DatabaseManager
+
+
+AddWork -r-> DatabaseManager
+ConfirmThisWork --> WorksDataManager
+ListWorks --> WorksDataManager
+ListWorks --> DatabaseManager
+ReadyWorks --> WorksDataManager
+ReadyWorks --> DatabaseManager
+
+
+@enduml

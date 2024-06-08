@@ -1,0 +1,39 @@
+@startuml
+skinparam defaultFontName Liberation Serif
+ 
+state "Окно входа" as login
+state "Домашнее окно" as home
+state "Пользователи" as profile
+state "Удалить пользователя" as deleteuser
+state "Добавить пользователя" as adduser
+
+login : Пользователь может:
+login : - ввести логин
+login : - ввести пароль
+login : - войти в систему
+login : - выйти из системы
+
+profile : Пользователь может:
+profile : - просмотреть список пользователей
+profile : - перейти в окно удаления пользователя
+profile : - перейти в окно добавления пользователя
+
+home : Пользователь может:
+home : - перейти в окно пользователи
+home : - выйти из системы
+
+adduser : Пользователь может:
+adduser : - удалить пользователя
+
+deleteuser : Пользователь может:
+deleteuser : - добавить пользователя
+
+[*] -down-> login
+login --> home : Нажата\nкнопка "Вход"
+home --> profile : Нажата кнопка\n "Пользователи"
+home --> login : Нажата кнопка\n "Выйти из системы"
+profile --> adduser : Нажата кнопка\n "Добавить пользователя"
+profile --> deleteuser : Нажата кнопка\n "Удалить пользователя"
+login -left-> [*] : Окно закрыто
+
+@enduml

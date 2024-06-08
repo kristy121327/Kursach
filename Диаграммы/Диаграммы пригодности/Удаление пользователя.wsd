@@ -1,0 +1,26 @@
+@startuml
+skinparam Shadowing true
+actor "Администратор" as admin
+boundary "Личный кабинет\nадминистратора" as mainMenuAd
+boundary "Окно удаления\n пользователей" as removeUserWindow 
+
+control "Открытие окна удаления\n      пользователей" as removeUserWindowControl
+control "Открытие окна\n       ошибки" as displayerror
+control "Обновление базы\n        данных" as writeToDatabase
+control "Проверка данных" as pro
+entity "База данных" as fs #Green
+boundary "Окно ошибки" as errorWindow #Red
+
+
+admin -u- mainMenuAd
+admin -r- removeUserWindow
+mainMenuAd -r-> removeUserWindowControl :Нажата кнопка\n Удалить пользователя
+removeUserWindowControl --> removeUserWindow 
+removeUserWindow --> writeToDatabase :Ввёл данные
+writeToDatabase --> pro
+pro --> displayerror
+displayerror-> errorWindow
+pro --> fs
+writeToDatabase --> fs
+
+@enduml

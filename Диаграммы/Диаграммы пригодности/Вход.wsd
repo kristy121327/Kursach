@@ -1,0 +1,35 @@
+@startuml
+skinparam Shadowing true
+actor "Пользователь" as person
+boundary "Окно входа" as loginWindow
+boundary "Личный кабинет\nадминистратора" as adminCabinet
+boundary "Личный кабинет\nпредставителя\n     кафедры" as departmentRepCabinet
+boundary "Личный кабинет\n    сотрудника" as staffCabinet
+boundary "Личный кабинет\nпреподавателя" as teacherCabinet
+boundary "Окно ошибки" as errorWindow #Red
+
+control "Проверка учетной\nзаписи" as checkCredentials
+control "Открытие окна ошибки\nзаписи" as displayError
+control "Открытие личного\nкабинета" as openCabinet #Green
+entity "База данных" as database
+
+person -r-> loginWindow
+
+loginWindow -u-> checkCredentials : Введены данные\nНажата кнопка\nВойти
+checkCredentials <-u-> database
+
+checkCredentials -u-> openCabinet
+openCabinet -d-> adminCabinet : Администратор
+openCabinet -d-> departmentRepCabinet : Представитель кафедры
+openCabinet -d-> staffCabinet : Сотрудник
+openCabinet -d-> teacherCabinet : Преподаватель
+checkCredentials --> displayError
+displayError --> errorWindow
+
+adminCabinet -- person
+departmentRepCabinet -- person
+staffCabinet -- person
+teacherCabinet -- person
+
+
+@enduml

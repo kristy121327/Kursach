@@ -1,0 +1,74 @@
+@startuml
+
+hide empty methods
+hide empty members
+ 
+class DatabaseManager
+{
+ bool openDatabase()
+ void closeDatabase()
+ QSqlDatabase getDatabase()
+ bool createUsersTable()
+ bool insertInitialData()
+ QList<QString> getEmployeeNamesByRoles()
+ int getUserIdFromFullName()
+ int getUserIdFromLogin()
+ mutable QSqlDatabase db
+}
+
+class AddEmployee
+{
+  QString m_login
+  void on_confirmButton_clicked()
+}
+
+class AddTeacher
+{
+ void on_confirmButton_clicked()
+ QString m_login
+}
+
+class AdminMainWindow
+{
+  void on_exit_batton_clicked()
+  void on_usersButton_clicked()
+}
+
+
+class AdminAdd
+{
+  void on_backButton_clicked()
+  void on_confirmButton_clicked()
+}
+
+class AllUsers
+{
+  void on_backButton_clicked()
+  void on_addButton_clicked()
+  void on_deleteButton_clicked()
+  void loadData()
+}
+
+class UsersDelete
+{
+  void on_confirmButton_clicked()
+  void on_backButton_clicked()
+}
+
+
+AdminMainWindow --> AllUsers
+
+AllUsers --> AdminAdd
+AllUsers --> UsersDelete
+
+AdminAdd --> AddEmployee
+AdminAdd --> AddTeacher  
+
+AddEmployee --> DatabaseManager
+AddTeacher --> DatabaseManager
+AdminAdd --> DatabaseManager
+AllUsers --> DatabaseManager
+UsersDelete --> DatabaseManager
+
+
+@enduml

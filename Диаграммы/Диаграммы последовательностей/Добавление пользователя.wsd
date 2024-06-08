@@ -1,0 +1,24 @@
+@startuml dia_add_user_for_admin
+skinparam Shadowing true
+actor "Администратор" as admin
+boundary "  Главное меню\nадминистратора" as mainMenuAd
+boundary "Окно добавления\n  пользователей" as addUserWindow
+boundary "Окно ошибки" as errorWindow #Red
+
+entity "База данных" as fs
+
+admin -> mainMenuAd : Нажал добавить\n пользователя
+mainMenuAd -> addUserWindow ** : Отобразить
+addUserWindow --> admin
+admin -> addUserWindow : Вводит данные
+addUserWindow -> addUserWindow : Проверка\n данных
+
+alt Данные корректны
+    addUserWindow -> fs : Запись в базу
+    fs --> addUserWindow 
+    addUserWindow --> admin
+else Данные не корректны
+    addUserWindow -> errorWindow **: Создать
+    errorWindow --> admin
+end
+@enduml
